@@ -114,3 +114,25 @@ function gameObject() {
         },
     };
 }
+
+// Helper to access all players
+function allPlayers() {
+    const game = gameObject();
+    return {
+        ...game.home.players,
+        ...game.away.players
+    };
+}
+
+// Retrieve Player Info
+function numPointsScored(playerName) {
+    return allPlayers()[playerName]?.points || null;
+}
+
+function shoeSize(playerName) {
+    return allPlayers()[playerName]?.shoe || null;
+}
+
+// Retrieve Team Info
+
+// Retrieve Player Numbers and Stats
