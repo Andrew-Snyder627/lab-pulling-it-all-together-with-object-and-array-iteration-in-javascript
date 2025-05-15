@@ -118,19 +118,24 @@ function gameObject() {
 // Helper to access all players
 function allPlayers() {
     const game = gameObject();
-    return {
-        ...game.home.players,
-        ...game.away.players
-    };
+    // return {
+    //     ...game.home.players,
+    //     ...game.away.players
+    // };
+    return Object.assign({}, game.home.players, game.away.players);
 }
 
 // Retrieve Player Info
 function numPointsScored(playerName) {
-    return allPlayers()[playerName]?.points || null;
+    // return allPlayers()[playerName]?.points || null;
+    const player = allPlayers()[playerName];
+    return player ? player.points : null;
 }
 
 function shoeSize(playerName) {
-    return allPlayers()[playerName]?.shoe || null;
+    // return allPlayers()[playerName]?.shoe || null;
+    const player = allPlayers()[playerName]
+    return player ? player.shoe : null;
 }
 
 // Retrieve Team Info
@@ -229,5 +234,25 @@ function playerWithLongestName() {
         }
     }
 
-    return `${longestName} has the longest name.`;
+    return longestName;
+    // return `${longestName} has the longest name.`;
 }
+
+function doesLongNameStealATon() {
+    const players = allPlayers();
+    const longestName = playerWithLongestName();
+
+    let maxSteals = 0;
+    let playerWithMostSteals = "";
+
+    for (let player in players) {
+        if (players[player].steals > maxSteals) {
+            maxSteals = players[player].steals;
+            playerWithMostSteals = player;
+        }
+    }
+
+    return longestName === playerWithMostSteals;
+}
+
+// console.log(doesLongNameStealATon());
