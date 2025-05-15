@@ -134,13 +134,13 @@ function numPointsScored(playerName) {
 
 function shoeSize(playerName) {
     // return allPlayers()[playerName]?.shoe || null;
-    const player = allPlayers()[playerName]
+    const player = allPlayers()[playerName];
     return player ? player.shoe : null;
 }
 
 // Retrieve Team Info
 function teamColors(teamName) {
-    const game = gameObject()
+    const game = gameObject();
     for (let teamKey in game) {
         if (game[teamKey].teamName === teamName) {
             return game[teamKey].colors;
@@ -151,13 +151,13 @@ function teamColors(teamName) {
 
 function teamNames() {
     const game = gameObject();
-    return [game.home.teamName, game.away.teamName]
+    return [game.home.teamName, game.away.teamName];
 }
 
 // Retrieve Player Numbers and Stats
 
 function playerNumbers(teamName) {
-    const game = gameObject()
+    const game = gameObject();
     for (let teamKey in game) {
         if (game[teamKey].teamName === teamName) {
             return Object.values(game[teamKey].players).map(player => player.number);
@@ -174,18 +174,18 @@ function playerStats(playerName) {
 function bigShoeRebounds() {
     const players = allPlayers();
     let biggestShoe = 0; // I would go smaller with a different dataset
-    let topRebounder = "";
+    // let topRebounder = "";
     let rebounds = 0;
 
     for (let player in players) {
         if (players[player].shoe > biggestShoe) {
             biggestShoe = players[player].shoe;
             rebounds = players[player].rebounds;
-            topRebounder = player;
+            // topRebounder = player;
         }
     }
 
-    return rebounds
+    return rebounds;
     // return `${topRebounder} had the biggest shoe size and grabbed ${rebounds} rebounds.`;
 }
 
@@ -207,7 +207,7 @@ function mostPointsScored() {
 
 // Helper
 function totalTeamPoints(players) {
-    return Object.values(players).reduce((sum, player) => sum + player.points, 0)
+    return Object.values(players).reduce((sum, player) => sum + player.points, 0);
 }
 
 function winningTeam() {
@@ -255,4 +255,13 @@ function doesLongNameStealATon() {
     return longestName === playerWithMostSteals;
 }
 
-// console.log(doesLongNameStealATon());
+console.log(numPointsScored("Alan Anderson"));
+console.log(shoeSize("Ben Gordon"));
+console.log(teamColors("Brooklyn Nets"));
+console.log(teamNames());
+console.log(playerNumbers("Charlotte Hornets"));
+console.log(playerStats("DeSagna Diop"));
+console.log(bigShoeRebounds());
+console.log(mostPointsScored());
+console.log(winningTeam());    
+console.log(doesLongNameStealATon());
