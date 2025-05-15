@@ -160,3 +160,74 @@ function playerNumbers(teamName) {
     }
     return [];
 }
+
+function playerStats(playerName) {
+    return allPlayers()[playerName] || null;
+}
+
+// Hard problem
+function bigShoeRebounds() {
+    const players = allPlayers();
+    let biggestShoe = 0; // I would go smaller with a different dataset
+    let topRebounder = "";
+    let rebounds = 0;
+
+    for (let player in players) {
+        if (players[player].shoe > biggestShoe) {
+            biggestShoe = players[player].shoe;
+            rebounds = players[player].rebounds;
+            topRebounder = player;
+        }
+    }
+
+    return rebounds
+    // return `${topRebounder} had the biggest shoe size and grabbed ${rebounds} rebounds.`;
+}
+
+// Bonus
+function mostPointsScored() {
+    const players = allPlayers();
+    let maxPoints = 0; // I would go smaller with a different dataset
+    let topScorer = "";
+
+    for (let player in players) {
+        if (players[player].points > maxPoints) {
+            maxPoints = players[player].points;
+            topScorer = player;
+        }
+    }
+
+    return `${topScorer} scored the most points with ${maxPoints}.`;
+}
+
+// Helper
+function totalTeamPoints(players) {
+    return Object.values(players).reduce((sum, player) => sum + player.points, 0)
+}
+
+function winningTeam() {
+    const game = gameObject();
+    let homePoints = totalTeamPoints(game.home.players);
+    let awayPoints = totalTeamPoints(game.away.players);
+
+    if (homePoints > awayPoints) {
+        return `${game.home.teamName} won with ${homePoints} points.`;
+    } else if (awayPoints > homePoints) {
+        return `${game.away.teamName} won with ${awayPoints} points.`;
+    } else {
+        return `It's a tie! Both teams scored ${homePoints} points.`;
+    }
+}
+
+function playerWithLongestName() {
+    const players = allPlayers();
+    let longestName = "";
+
+    for (let player in players) {
+        if (player.length > longestName.length) {
+            longestName = player;
+        }
+    }
+
+    return `${longestName} has the longest name.`;
+}
