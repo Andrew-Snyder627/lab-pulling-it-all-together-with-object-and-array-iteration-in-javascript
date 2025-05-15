@@ -134,5 +134,29 @@ function shoeSize(playerName) {
 }
 
 // Retrieve Team Info
+function teamColors(teamName) {
+    const game = gameObject()
+    for (let teamKey in game) {
+        if (game[teamKey].teamName === teamName) {
+            return game[teamKey].colors;
+        }
+    }
+    return null;
+}
+
+function teamNames() {
+    const game = gameObject();
+    return [game.home.teamName, game.away.teamName]
+}
 
 // Retrieve Player Numbers and Stats
+
+function playerNumbers(teamName) {
+    const game = gameObject()
+    for (let teamKey in game) {
+        if (game[teamKey].teamName === teamName) {
+            return Object.values(game[teamKey].players).map(player => player.number);
+        }
+    }
+    return [];
+}
